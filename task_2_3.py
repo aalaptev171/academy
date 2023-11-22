@@ -1,3 +1,5 @@
+# Задание 1.
+#
 #     Написать класс точка.
 #         __init__, внутри которого будут определены координаты точки по осе абсцисс и ординат.
 #         Начальные значения свойств берутся из входных параметров метода.
@@ -73,9 +75,21 @@ class Circle(Figure):
     def area(self):
         return math.pi * (self._r**2)
     
-class Sphere(Circle):
+class Sphere(Figure):
     def __init__(self,x,y,r):
-        super().__init__(x,y,r)
+        super().__init__(x,y)
+        self._r = r
+
+    @property
+    def r(self):
+        return self._r
+
+    @r.setter
+    def r(self, value):
+        if value < 0:
+            self._r = 0
+        else:
+            self._r = value
 
     def volume(self):
         return 4 / 3 * math.pi * self._r**3
@@ -84,5 +98,5 @@ class Sphere(Circle):
         return 4*math.pi*self._r**2
     
     def __str__(self):
-        return f'{self._x},{self._y},{self._r},{self._color}' 
+        return f'{self._x},{self._y},{self._r}' 
     
